@@ -1,0 +1,3 @@
+SET SERVEROUTPUT ON;
+DECLARE CURSOR c IS SELECT book_id,title FROM book; BEGIN IF c%ISOPEN THEN DBMS_OUTPUT.PUT_LINE('Cursor already open'); ELSE DBMS_OUTPUT.PUT_LINE('Cursor is closed, opening now'); END IF; OPEN c; IF c%ISOPEN THEN DBMS_OUTPUT.PUT_LINE('Cursor is open'); END IF; CLOSE c; IF NOT c%ISOPEN THEN DBMS_OUTPUT.PUT_LINE('FALSE - Cursor is closed'); END IF; END;
+/
