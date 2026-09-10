@@ -1,0 +1,16 @@
+SET SERVEROUTPUT ON;
+DECLARE
+  v_id NUMBER := (MOD(36 + 2, 11) + 1) * 10;
+  v_dname departments.department_name%TYPE;
+  v_loc departments.location_id%TYPE;
+BEGIN
+  SELECT department_name, location_id
+  INTO v_dname, v_loc
+  FROM departments WHERE department_id = v_id;
+  DBMS_OUTPUT.PUT_LINE('Dept ' || v_id || ': ' || v_dname || ' at location ' || v_loc);
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    DBMS_OUTPUT.PUT_LINE('Department not found.');
+END;
+/
+-- %TYPE automatically follows the referenced column's datatype/size if the DBA changes it.
