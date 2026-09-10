@@ -1,0 +1,11 @@
+SET SERVEROUTPUT ON;
+DECLARE
+  roll_no NUMBER:=36; n NUMBER:=MOD(roll_no,9)+2; h NUMBER:=5+MOD(roll_no,5);
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Part A: Table of '||n); FOR i IN 1..20 LOOP DBMS_OUTPUT.PUT_LINE(n||' x '||i||' = '||n*i); END LOOP;
+  DBMS_OUTPUT.PUT_LINE('Part B: Tables 2 to 5'); FOR t IN 2..5 LOOP FOR i IN 1..10 LOOP DBMS_OUTPUT.PUT_LINE(LPAD(t||' x '||i||' = '||t*i,15)); END LOOP; END LOOP;
+  DBMS_OUTPUT.PUT_LINE('Part C: Star Triangle'); FOR i IN 1..h LOOP DBMS_OUTPUT.PUT_LINE(RPAD('*',i,'*')); END LOOP;
+  DBMS_OUTPUT.PUT_LINE('Part D: Number Pyramid'); FOR i IN 1..6 LOOP FOR j IN 1..i LOOP DBMS_OUTPUT.PUT(j); END LOOP; DBMS_OUTPUT.NEW_LINE; END LOOP;
+  DBMS_OUTPUT.PUT_LINE('Part E: Reverse Triangle'); FOR i IN REVERSE 1..h LOOP DBMS_OUTPUT.PUT_LINE(RPAD('*',i,'*')); END LOOP;
+END;
+/
