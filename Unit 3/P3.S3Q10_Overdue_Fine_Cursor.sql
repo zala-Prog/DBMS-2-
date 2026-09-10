@@ -1,0 +1,3 @@
+SET SERVEROUTPUT ON;
+DECLARE CURSOR c(p_days NUMBER) IS SELECT issue_id,issue_date FROM book_issue WHERE return_date IS NULL AND issue_date<SYSDATE-p_days; total_fine NUMBER:=0; days_over NUMBER; fine_amt NUMBER; BEGIN FOR r IN c(30) LOOP days_over:=TRUNC(SYSDATE-r.issue_date); fine_amt:=days_over*2; total_fine:=total_fine+fine_amt; DBMS_OUTPUT.PUT_LINE(r.issue_id||' - Overdue days: '||days_over||' - Fine Rs.'||fine_amt); END LOOP; DBMS_OUTPUT.PUT_LINE('Total Fine Payable: Rs.'||total_fine); END;
+/
